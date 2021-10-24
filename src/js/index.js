@@ -77,11 +77,12 @@ import { $ } from "./util/dom.js";
 import store from "./store/index.js";
 
 const categoryList = [
-  "espresso",
-  "frappuccino",
-  "blended",
-  "teavana",
-  "dessert",
+  { name: "espresso", value: "☕ 에스프레소" },
+  { name: "frappuccino", value: "🥤 프라푸치노" },
+  { name: "blended", value: "🍹 블렌디드" },
+  { name: "teavana", value: "🍵 티바나" },
+  { name: "dessert", value: "🍰 디저트" },
+  { name: "signiture", value: "🌕 시그니처" },
 ];
 
 function App() {
@@ -89,20 +90,31 @@ function App() {
   // 이 app에서 변하는 것? 메뉴 이름
 
   this.menu = {};
-  this.currentCategory = categoryList[0];
-
-  categoryList.map((category) => (this.menu[category] = []));
+  categoryList.map((category) => (this.menu[category.name] = []));
+  this.currentCategory = categoryList[0].name;
 
   this.init = () => {
     categoryList.map((category) => {
       if (store.getLocalStorage()) {
-        const items = store.getLocalStorage()[category];
-        if (items.length > 0) this.menu[category] = items.sort();
+        const items = store.getLocalStorage()[category.name];
+        if (items && items.length > 0) this.menu[category.name] = items;
       }
     });
-
+    renderMenuButton();
     render();
     initEventListeners();
+  };
+
+  const renderMenuButton = () => {
+    const menuButtonTemplate = (category) => `<button
+        data-category-name="${category.name}"
+        class="cafe-category-name btn bg-white shadow mx-1"
+        >${category.value}</button>`;
+
+    const template = categoryList
+      .map((item) => menuButtonTemplate(item))
+      .join("");
+    $("#menu-button-list").innerHTML = template;
   };
 
   const render = () => {
@@ -133,6 +145,7 @@ function App() {
     };
 
     const template = this.menu[this.currentCategory]
+      .sort((o1, o2) => o1.name.localeCompare(o2.name))
       .map((menuItem, index) => menuItemTemplate(menuItem, index))
       .join("");
     $("#menu-list").innerHTML = template;
@@ -218,7 +231,7 @@ function App() {
       addMenuItem();
     });
 
-    $("nav").addEventListener("click", (e) => {
+    $("#menu-button-list").addEventListener("click", (e) => {
       // const isCategoryButton = e.target.nodeName === "BUTTON";
       const isCategoryButton =
         e.target.classList.contains("cafe-category-name");
