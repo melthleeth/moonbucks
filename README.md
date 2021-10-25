@@ -2,10 +2,10 @@
 <p align="middle">
   <img width="200px;" src="./src/images/moonbucks.png"/>
 </p>
-<h2 align="middle">JS 문벅스 카페메뉴 앱</h2>
-<p align="middle">Vanilla JS로 구현 하는 상태관리가 가능한 카페메뉴 앱</p>
+<h2 align="middle">🌝MOONBUCKS🌚</h2>
+<p align="middle">Vanilla JS로 구현하는 상태관리가 가능한 카페메뉴 앱</p>
 <br/>
-<h3 align="middle">Result</h3>
+<h2 align="middle">프로젝트 결과물</h2>
 <p align="middle">
   <img width="600px;" src="./src/images/moonbucks-result.gif"/>
 </p>
