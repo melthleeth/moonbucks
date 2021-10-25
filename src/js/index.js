@@ -125,6 +125,12 @@ function App() {
       "수정할 메뉴 이름을 입력하세요.",
       $menuName.innerText
     );
+
+    if (updatedMenuName === null || updatedMenuName.trim() === "") {
+      alert("값을 입력해주세요.");
+      return;
+    }
+
     await MenuApi.updateMenu(this.currentCategory, updatedMenuName, menuId);
     this.menu[this.currentCategory] = await MenuApi.getAllMenuByCategory(
       this.currentCategory
