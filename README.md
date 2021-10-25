@@ -10,6 +10,28 @@
   <img width="600px;" src="./src/images/moonbucks-result.gif"/>
 </p>
 
+## 💻 서버 실행하기!
+
+#### 1. 저장소를 local에 clone 해줍니다.
+
+```sh
+git clone https://github.com/blackcoffee-study/moonbucks-menu-server.git
+```
+
+#### 2. 저장소를 clone한 후 아래 명령어를 입력해 의존성 라이브러리를 설치해줍니다.
+
+```sh
+npm install
+```
+
+#### 3. 아래 명령어를 이용해 서버를 동작시킵니다.
+
+```sh
+npm start
+```
+
+---
+
 # 🎯 step1 요구사항 - 돔 조작과 이벤트 핸들링으로 메뉴 관리하기
 
 ## WHAT I LEARNED
